@@ -1,17 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import HeaderBlock from './components/HeaderBlock'
+import React from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          New app
-        </p>
-      </header>
-    </div>
-  );
+//<>=<React.fragment>
+const App = () => {
+    return (
+        <>
+            <HeaderBlock
+                title="New title"
+                descr="Description"
+            />
+            <HeaderBlock
+                title="New title"
+                hideBg
+            />
+        </>
+    )
 }
 
 export default App;
