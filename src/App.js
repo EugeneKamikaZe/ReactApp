@@ -20,13 +20,11 @@ const App = () => {
                 title="Layout title first"
                 descr="Layout description"
                 urlBg={bg1}
-                colorBg
             />
             <Layout
                 id={1}
                 title="Layout title second"
                 descr={description1}
-                urlBg
                 colorBg="antiquewhite"
             />
             <Layout
@@ -34,7 +32,6 @@ const App = () => {
                 title="Layout title firth"
                 descr={description2}
                 urlBg={bg2}
-                colorBg
             />
             <Footer />
         </>
