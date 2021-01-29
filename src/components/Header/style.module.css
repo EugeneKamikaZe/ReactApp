@@ -11,7 +11,7 @@
 .root::before {
     content: '';
     position: fixed;
-    background: url('https://s3.us-west-2.amazonaws.com/secure.notion-static.com/a83c9ee4-6981-4ba7-8955-4ceac8f9778f/Stars.svg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210127%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210127T121907Z&X-Amz-Expires=86400&X-Amz-Signature=f526ada6046e57b42f3146dff1bbbc4f0e5cea0c91a567a01d2b1a3e6b6b9c90&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Stars.svg%22');
+    background: url('https://s3.us-west-2.amazonaws.com/secure.notion-static.com/a83c9ee4-6981-4ba7-8955-4ceac8f9778f/Stars.svg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210127%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210127T121907Z&X-Amz-Expires=86400&X-Amz-Signature=f526ada6046e57b42f3146dff1bbbc4f0e5cea0c91a567a01d2b1a3e6b6b9c90&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Stars.svg');
     background-attachment: fixed;
     width: 100%;
     min-height: 100vh;
