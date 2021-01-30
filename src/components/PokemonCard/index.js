@@ -7,15 +7,11 @@ const PokemonCard = ({name, img, id, type, values}) => {
     const [isActive, setActive] = useState(false)
 
     const handlerClick = () => {
-        setActive(true)
-    }
-    const handlerOut = () => {
-        // setActive(false)
-        setTimeout(setActive, 1000)
+        setActive(!isActive)
     }
 
     return (
-        <div className={s.root} onClick={handlerClick} onMouseLeave={handlerOut}>
+        <div className={s.root} onClick={handlerClick}>
             <div className={`${s.pokemonCard} ${isActive ? s.active : ''}`}>
                 <div className={s.cardFront}>
                     <div className={`${s.wrap} ${s.front}`}>
