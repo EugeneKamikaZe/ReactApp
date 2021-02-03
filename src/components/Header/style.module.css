@@ -88,3 +88,20 @@
     color: #fafafa;
     line-height: 32px;
 }
+
+.start__btn {
+    margin-top: 16px;
+    padding: 12px 24px;
+    font-size: 20px;
+    font-family: 'Overlock', Arial, Helvetica, sans-serif;
+    background-color: bisque;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: .2s opacity;
+}
+
+.start__btn:hover {
+    opacity: .8;
+}
