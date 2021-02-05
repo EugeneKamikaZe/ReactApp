@@ -66,12 +66,12 @@ const GamePage = () => {
                 const pokemon = {...item[1]}
                 if (pokemon.id === id) {
                     pokemon.active = !pokemon.active
+                    console.log(prevState)
                 }
 
                 acc[item[0]] = pokemon
 
-                // Сделать обновление только для нужных элементов
-                database.ref('pokemons').set(acc)
+                database.ref('pokemons').update(acc)
 
                 return acc
             }, {})
