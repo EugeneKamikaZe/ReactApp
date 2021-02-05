@@ -162,6 +162,9 @@
 }
 
 .pokemon .imgContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: rgba(255, 255, 255, 0.6);
     border-radius: 50%;
     width: 140px;
@@ -171,7 +174,6 @@
 }
 
 .pokemon .imgContainer img {
-    margin-top: 20px;
     max-width: 90%;
 }
 
