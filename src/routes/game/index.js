@@ -2,9 +2,9 @@ import {Route, Switch, useRouteMatch} from 'react-router-dom'
 import {useState} from 'react'
 import {PokemonContext} from '../../context/pokemonContext'
 
-const StartPage = require('./routes/Start')
-const BoardPage = require('./routes/Board')
-const FinishPage = require('./routes/Finish')
+import StartPage from './routes/Start'
+import BoardPage from './routes/Board'
+import FinishPage from './routes/Finish'
 
 const GamePage = () => {
     const match = useRouteMatch('/game')

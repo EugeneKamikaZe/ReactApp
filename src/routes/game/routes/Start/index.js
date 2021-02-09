@@ -4,44 +4,14 @@ import Layout from '../../../../components/Layout'
 import s from './style.module.css'
 
 import {FirebaseContext} from '../../../../context/firebaseContext'
+import {useHistory} from 'react-router-dom'
 import {PokemonContext} from '../../../../context/pokemonContext'
 
-const newPOKEMON = {
-    "abilities": [
-        "hatchet",
-        "evil-look ",
-        "laugh"
-    ],
-    "stats": {
-        "hp": 9000,
-        "attack": 1000,
-        "defense": 1000,
-        "special-attack": 10,
-        "special-defense": 10,
-        "speed": 5
-    },
-    "type": "man",
-    "img": "https://s.tcdn.co/41a/7fb/41a7fb1f-9bff-3ddb-90fb-be11903192e1/192/7.png",
-    "name": "Jonny",
-    "base_experience": 122,
-    "height": 180,
-    "id": 66,
-    "values": {
-        "top": "e",
-        "right": "s",
-        "bottom": "i",
-        "left": "H"
-    }
-}
-
 const StartPage = () => {
+    const history = useHistory()
     const firebase = useContext(FirebaseContext)
+    const selected = useContext(PokemonContext)
     const [pokemons, setPokemon] = useState({})
-
-    const getPokemons = async () => {
-        const response = await firebase.getPokemonsOnce()
-        setPokemon(response)
-    }
 
     useEffect(() => {
         firebase.getPokemonSoket((pokemons) => {
@@ -49,50 +19,30 @@ const StartPage = () => {
         })
     }, [])
 
+    const handleToBoard = () => {
+        history.push('/game/board')
+    }
+
     const onCardClick = (id) => {
         setPokemon(prevState => {
             return Object.entries(prevState).reduce((acc, item) => {
                 const pokemon = {...item[1]}
+
                 if (pokemon.id === id && !pokemon.isSelected) {
                     pokemon.isSelected = true
-                    // pokemon.active = !pokemon.active
-                    pushToContext(item)
+                    pushToContext(item[1])
                 }
 
                 acc[item[0]] = pokemon
-                // firebase.postPokemon(item[0], pokemon)
+
                 return acc
             }, {})
         })
     }
 
     const pushToContext = (val) => {
-        PokemonContext.pokemon.push(val)
-        console.log(PokemonContext)
+        selected.pokemon.push(val)
     }
-
-    const handleAddPokemon = () => {
-        const data = newPOKEMON
-        firebase.addPokemon(data, async () => {
-            await getPokemons()
-        })
-    }
-
-    // const onAddBtnClick = () => {
-    //     const newPostKey = database.ref().child('pokemons').push().key
-    //
-    //     let updates = {}
-    //     updates[newPostKey + '/'] = newPOKEMON
-    //
-    //     database
-    //         .ref('pokemons/')
-    //         .update(updates)
-    //         .then(() => {
-    //             database.ref('pokemons').once('value', (snapshot) => {
-    //                 setPokemon(snapshot.val())
-    //             })
-    //         })
-    // }
 
     return (
         <Layout
@@ -100,10 +50,10 @@ const StartPage = () => {
             title="Pokemon Game"
             colorBg="cornflowerblue"
         >
-            <button className={s.addBtn} onClick={handleAddPokemon}>Start Game</button>
+            <button className={s.addBtn} disabled={selected.pokemon.length !== 5} onClick={handleToBoard}>Start Game</button>
             <div className={s.flex}>
                 {
-                    Object.entries(pokemons).map(([key, {name, img, id, type, values, active}]) => (
+                    Object.entries(pokemons).map(([key, {name, img, id, type, values, isSelected}]) => (
                         <PokemonCard
                             key = {key}
                             values = {values}
@@ -111,7 +61,7 @@ const StartPage = () => {
                             img = {img}
                             type = {type}
                             id = {id}
-                            active={true}
+                            isSelected={isSelected}
                             onCardClick={onCardClick}
                         />
                     ))
