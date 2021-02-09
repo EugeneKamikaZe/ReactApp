@@ -8,13 +8,17 @@ import Footer from './components/Footer'
 import AboutPage from './routes/about'
 import ContactPage from './routes/contact'
 
+import {FirebaseContext} from './context/firebaseContext'
+
 import s from './style.module.css'
+import Firebase from './service/firebase'
 
 const App = () => {
     const match = useRouteMatch('/')
 
     return (
-        <Switch>
+        <FirebaseContext.Provider value={new Firebase()} >
+            <Switch>
             <Route path="/404" render={() => (
                 <h1>404 Page not Found</h1>
             )} />
@@ -39,6 +43,7 @@ const App = () => {
                 </>
             </Route>
         </Switch>
+        </FirebaseContext.Provider>
     )
 }
 
