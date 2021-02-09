@@ -1,9 +1,5 @@
-// import React, { useState } from 'react'
 import Header from '../../components/Header'
 import Layout from '../../components/Layout'
-import Footer from '../../components/Footer'
-import PokemonCard from '../../components/PokemonCard'
-import MenuNavbar from '../../components/MenuHeader'
 
 import '../../App.css'
 
