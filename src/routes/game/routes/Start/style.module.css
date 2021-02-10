@@ -17,6 +17,11 @@
     cursor: pointer;
 }
 
+.card {
+    height: 380px;
+    cursor: pointer;
+}
+
 .addBtn:hover {
     opacity: .8;
 }

@@ -10,38 +10,32 @@ import {PokemonContext} from '../../../../context/pokemonContext'
 const StartPage = () => {
     const history = useHistory()
     const firebase = useContext(FirebaseContext)
-    const selected = useContext(PokemonContext)
+    const selectedPokemons = useContext(PokemonContext)
     const [pokemons, setPokemon] = useState({})
 
     useEffect(() => {
         firebase.getPokemonSoket((pokemons) => {
             setPokemon(pokemons)
         })
+
+        return () => firebase.offPokemonSoket()
     }, [])
 
     const handleToBoard = () => {
         history.push('/game/board')
     }
 
-    const onCardClick = (id) => {
-        setPokemon(prevState => {
-            return Object.entries(prevState).reduce((acc, item) => {
-                const pokemon = {...item[1]}
+    const onCardClick = (key) => {
+        const pokemon = {...pokemons[key]}
+        selectedPokemons.onSelected(key, pokemon)
 
-                if (pokemon.id === id && !pokemon.isSelected) {
-                    pokemon.isSelected = true
-                    pushToContext(item[1])
-                }
-
-                acc[item[0]] = pokemon
-
-                return acc
-            }, {})
-        })
-    }
-
-    const pushToContext = (val) => {
-        selected.pokemon.push(val)
+        setPokemon(prevState => ({
+            ...prevState,
+            [key]: {
+                ...prevState[key],
+                selected: !prevState[key].selected
+            }
+        }))
     }
 
     return (
@@ -50,19 +44,24 @@ const StartPage = () => {
             title="Pokemon Game"
             colorBg="cornflowerblue"
         >
-            <button className={s.addBtn} disabled={selected.pokemon.length !== 5} onClick={handleToBoard}>Start Game</button>
+            <button className={s.addBtn} disabled={Object.keys(selectedPokemons.pokemons).length < 5} onClick={handleToBoard}>Start Game</button>
             <div className={s.flex}>
                 {
-                    Object.entries(pokemons).map(([key, {name, img, id, type, values, isSelected}]) => (
+                    Object.entries(pokemons).map(([key, {name, img, id, type, values, selected}]) => (
                         <PokemonCard
+                            className={s.card}
                             key = {key}
                             values = {values}
                             name = {name}
                             img = {img}
                             type = {type}
                             id = {id}
-                            isSelected={isSelected}
-                            onCardClick={onCardClick}
+                            isSelected={selected}
+                            onCardClick={() => {
+                                if (Object.keys(selectedPokemons.pokemons).length < 5 || selected) {
+                                    onCardClick(key)
+                                }
+                            }}
                         />
                     ))
                 }
