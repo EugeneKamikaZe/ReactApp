@@ -16,6 +16,11 @@
     font-family: 'Overlock', Arial, Helvetica, sans-serif;
     cursor: pointer;
 }
+.addBtn:disabled {
+    opacity: .8;
+    color: black;
+    cursor: initial;
+}
 
 .card {
     height: 380px;

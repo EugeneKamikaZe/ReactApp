@@ -1,0 +1,36 @@
+.wrap {
+    display: flex;
+}
+
+.root {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 10;
+    width: 100%;
+}
+
+.playerOne, .playerTwo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 24px;
+}
+
+.playerOne {
+    background-color: #5b93ff;
+}
+
+.playerTwo {
+    background-color: #f96a6a;
+}
+
+.endBtn {
+    padding: 12px 24px;
+    background-color: deeppink;
+    margin: 24px auto;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}

@@ -1,0 +1,15 @@
+.cardBoard {
+    width: 100%;
+    max-width: 18vw;
+    margin-top: -6vw;
+}
+
+.cardBoard > div {
+    margin-top: 0;
+    max-height: 15vw;
+    max-width: 18vw;
+}
+
+.cardBoard.selected {
+    margin-left: -20px;
+}

@@ -12,7 +12,7 @@
 .root:before {
     content: '';
     position: fixed;
-    background: url(https://raw.githubusercontent.com/yagoestevez/fcc-portfolio/master/src/Images/Stars.svg?sanitize=true);
+    background-image: url(https://raw.githubusercontent.com/yagoestevez/fcc-portfolio/master/src/Images/Stars.svg?sanitize=true);
     background-attachment: fixed;
     width: 100%;
     min-height: 100vh;
@@ -101,7 +101,7 @@
 }
 
 .container {
-    width: fit-content;
+    width: max-content;
     position: absolute;
     right: 0;
     top: 50%;
@@ -109,13 +109,13 @@
     opacity: 0;
     transform: translate(-50%, -50%);
     animation: text-fade-in 1000ms 800ms forwards;
+    text-align: center;
 }
 
 .container h1 {
     font-size: 65px;
     font-weight: normal;
     font-style: italic;
-    color: #fafafa;
     line-height: 65px;
 }
 
