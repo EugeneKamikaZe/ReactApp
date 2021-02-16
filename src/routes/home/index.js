@@ -10,8 +10,8 @@ import Bg2 from '../../assets/bg3.jpg'
 
 const HomePage = ({ onChangePage }) => {
 
-    // const count = useSelector((state) => state.value)
-    // console.log('count', count)
+    const count = useSelector((state) => state.value)
+    console.log('count', count)
 
     const handleClickButton = (page) => {
         onChangePage && onChangePage(page)
