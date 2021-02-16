@@ -12,6 +12,8 @@ const StartPage = () => {
     const firebase = useContext(FirebaseContext)
     const selectedPokemons = useContext(PokemonContext)
     const [pokemons, setPokemon] = useState({})
+    const disabled = Object.keys(selectedPokemons.pokemons).length < 5
+    const count = 5
 
     useEffect(() => {
         firebase.getPokemonSoket((pokemons) => {
@@ -41,10 +43,14 @@ const StartPage = () => {
     return (
         <Layout
             id={1}
-            title="Pokemon Game"
+            title="Chose your Pokemon's"
             colorBg="cornflowerblue"
         >
-            <button className={s.addBtn} disabled={Object.keys(selectedPokemons.pokemons).length < 5} onClick={handleToBoard}>Start Game</button>
+            <button className={s.addBtn} disabled={disabled} onClick={handleToBoard}>
+                {
+                    disabled ? `Chose ${count - Object.keys(selectedPokemons.pokemons).length} left` : 'Start'
+                }
+            </button>
             <div className={s.flex}>
                 {
                     Object.entries(pokemons).map(([key, {name, img, id, type, values, selected}]) => (

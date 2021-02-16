@@ -20,7 +20,7 @@
     --psychic: #eaeda1;
     --flying: #F5F5F5;
     --fighting: #E6E0D4;
-    --normal: #F5F5F;
+    --normal: #FFF;
 
     width: 100%;
     height: 100%;
@@ -28,12 +28,10 @@
     transform-style: preserve-3d;
     transition: .6s .1s;
     transform: rotateY(180deg);
-
-    animation: flipBack 1000ms 0ms forwards;
 }
 
 .pokemonCard.active {
-    animation: flipFront 1000ms 300ms forwards;
+    transform: rotateY(0deg);
 }
 
 @keyframes flipFront {
@@ -198,6 +196,13 @@
     height: 140px;
     text-align: center;
     margin-bottom: 20px;
+}
+
+.red {
+    background-color: #f96a6a;
+}
+.blue {
+    background-color: #5b93ff;
 }
 
 .pokemon .imgContainer img {

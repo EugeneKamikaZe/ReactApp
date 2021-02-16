@@ -1,3 +1,5 @@
+import {useSelector} from 'react-redux'
+
 import Header from '../../components/Header'
 import Layout from '../../components/Layout'
 
@@ -7,13 +9,18 @@ import Bg1 from '../../assets/bg1.jpg'
 import Bg2 from '../../assets/bg3.jpg'
 
 const HomePage = ({ onChangePage }) => {
+
+    // const count = useSelector((state) => state.value)
+    // console.log('count', count)
+
     const handleClickButton = (page) => {
         onChangePage && onChangePage(page)
     }
+
     return (
         <>
             <Header
-                title="New title"
+                title="Pokemon Game"
                 descr="Description"
                 onClickButton={handleClickButton}
             />

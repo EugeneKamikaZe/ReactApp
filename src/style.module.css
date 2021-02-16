@@ -6,3 +6,7 @@
 .wrap.isHomePage {
     padding: 0;
 }
+
+.wrap.isFinish {
+    display: flex;
+}

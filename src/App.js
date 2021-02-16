@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLocation, Route, Switch, Redirect } from 'react-router-dom'
+import {useLocation, Route, Switch, Redirect} from 'react-router-dom'
 import  cn from 'classnames'
 
 import HomePage from './routes/home'
@@ -16,7 +16,8 @@ import Firebase from './service/firebase'
 
 const App = () => {
     const location = useLocation()
-    const isPadding = location.pathname === '/' || location.pathname === '/game/board'
+    const isPadding = location.pathname === '/'
+    const isFinishPage = location.pathname === '/game/finish'
 
     return (
         <FirebaseContext.Provider value={new Firebase()} >
@@ -28,7 +29,8 @@ const App = () => {
                 <>
                     <MenuNavbar bgActive={!isPadding} />
                     <div className={cn(s.wrap, {
-                        [s.isHomePage]: isPadding
+                        [s.isHomePage]: isPadding,
+                        [s.isFinish]: isFinishPage
                     })}>
                         <Switch>
                             <Route path="/" exact component={HomePage} />
