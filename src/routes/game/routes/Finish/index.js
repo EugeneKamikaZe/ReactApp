@@ -1,5 +1,5 @@
 import s from './style.module.css'
-import {useContext, useState, useEffect} from 'react'
+import {useContext, useState} from 'react'
 import {useHistory} from 'react-router-dom'
 
 import PokemonCard from '../../../../components/PokemonCard'
@@ -13,8 +13,11 @@ const FinishPage = () => {
     const player2 = Object.assign({}, pokemons2.data)
     const history = useHistory()
     const ReturnToGame = () => {
-        pokemons = {}
-        firebase.addPokemon(selectedPokemon, () => history.push('/game'))
+        if (selectedPokemon) {
+            firebase.addPokemon(selectedPokemon, () => history.push('/game'))
+        } else {
+            history.push('/game')
+        }
     }
 
     if ((pokemons === undefined) || (pokemons2.data === undefined)) {

@@ -13,6 +13,7 @@ import {FirebaseContext} from './context/firebaseContext'
 
 import s from './style.module.css'
 import Firebase from './service/firebase'
+import FirebaseClass from './service/firebase'
 
 const App = () => {
     const location = useLocation()
@@ -20,7 +21,7 @@ const App = () => {
     const isFinishPage = location.pathname === '/game/finish'
 
     return (
-        <FirebaseContext.Provider value={new Firebase()} >
+        <FirebaseContext.Provider value={FirebaseClass} >
             <Switch>
             <Route path="/404" render={() => (
                 <h1>404 Page not Found</h1>
