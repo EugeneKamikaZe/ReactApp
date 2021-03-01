@@ -18,8 +18,11 @@ const PlayerBoard = ({player, cards, onClickCard}) => {
                             [s.selected]: isSelected === item.id
                         })}
                         onClick={() => {
-                            setCurrent(player)
-                            setSelected(item.id)
+                            // setCurrent()
+                            // if (currentPlayer === player1) {
+                            //     setSelected(item.id)
+                            // }
+                            // setSelected(item.id)
                             onClickCard && onClickCard({
                                 ...item,
                                 player
