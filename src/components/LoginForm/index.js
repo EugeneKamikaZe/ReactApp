@@ -21,7 +21,7 @@ const LoginForm = ({onSubmit, isOpen}) => {
             setEmail('')
             setPass('')
         }
-    })
+    }, [isOpen])
 
     return (
         <form onSubmit={handleSubmit}>

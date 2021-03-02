@@ -2,6 +2,7 @@ import s from './style.module.css'
 import cn from 'classnames'
 
 import {ReactComponent as LoginSVG} from '../../assets/login.svg'
+import {ReactComponent as LogoSVG} from '../../assets/logo.svg'
 
 const NavBar = ({isOpen, bgActive = false, onMenuClick, onClickLogin}) => {
 
@@ -10,9 +11,9 @@ const NavBar = ({isOpen, bgActive = false, onMenuClick, onClickLogin}) => {
             [s.bgActive]: bgActive
         })}>
             <div className={s.navWrapper}>
-                <p className={s.brand}>
-                    LOGO
-                </p>
+                <div className={s.logoWrap}>
+                    <LogoSVG/>
+                </div>
                 <div className={s.loginAndMenu}>
                     <div
                         className={s.loginWrap}

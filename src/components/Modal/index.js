@@ -8,6 +8,7 @@ const Modal = ({isOpen, title, children, onCloseModal}) => {
 
     useEffect(() => {
         document.querySelector('body').style.overflow = isOpen ? 'hidden': null
+        document.querySelector('html').style.overflowY = isOpen ? 'scroll': null
     }, [isOpen])
 
     const handleCloseModal = () => {
