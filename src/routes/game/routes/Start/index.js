@@ -3,25 +3,29 @@ import PokemonCard from '../../../../components/PokemonCard'
 import Layout from '../../../../components/Layout'
 import s from './style.module.css'
 
-import {FirebaseContext} from '../../../../context/firebaseContext'
 import {useHistory} from 'react-router-dom'
 import {PokemonContext} from '../../../../context/pokemonContext'
+import {useDispatch, useSelector} from 'react-redux'
+import {getPokemonsAsync, selectPokemonsData, selectPokemonsLoading} from '../../../../store/pokemons'
 
 const StartPage = () => {
     const history = useHistory()
-    const firebase = useContext(FirebaseContext)
     const selectedPokemons = useContext(PokemonContext)
-    const [pokemons, setPokemon] = useState({})
     const disabled = Object.keys(selectedPokemons.pokemons).length < 5
     const count = 5
 
-    useEffect(() => {
-        firebase.getPokemonSoket((pokemons) => {
-            setPokemon(pokemons)
-        })
+    const dispatch = useDispatch()
+    const pokemonsRedux = useSelector(selectPokemonsData)
 
-        return () => firebase.offPokemonSoket()
+    const [pokemons, setPokemon] = useState({})
+
+    useEffect(() => {
+        dispatch(getPokemonsAsync())
     }, [])
+
+    useEffect(() => {
+        setPokemon(pokemonsRedux)
+    }, [pokemonsRedux])
 
     const handleToBoard = () => {
         history.push('/game/board')
