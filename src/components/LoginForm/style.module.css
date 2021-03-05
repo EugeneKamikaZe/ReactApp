@@ -1,5 +1,10 @@
-.login__button,
-.login__button:visited {
+.btnWrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.activeButton,
+.activeButton:visited {
     width: 100%;
     max-width: 240px;
     padding: 1rem;
@@ -14,8 +19,8 @@
     border-radius: 4px;
 }
 
-.login__button,
-.login__button:visited {
+.activeButton,
+.activeButton:visited {
     background: #f300b4;
     border: 1px solid transparent;
     color: #fafafa;
@@ -23,7 +28,7 @@
     outline: none;
 }
 
-.login__button:hover {
+.activeButton:hover {
     background: transparent;
     border: 1px solid #f300b4;
     color: #f300b4;
@@ -31,7 +36,7 @@
     outline: none;
 }
 
-.login__button:active {
+.activeButton:active {
     background: transparent;
     border: 1px solid #f300b4;
     color: #f300b4;
@@ -42,13 +47,29 @@
     border-right: 2px solid;
 }
 
-.login__button:disabled {
+.activeButton:disabled {
     opacity: .4;
     cursor: not-allowed;
 }
 
-.login__button:disabled:hover {
+.activeButton:disabled:hover {
     background: #f300b4;
     border: 1px solid transparent;
     color: #fafafa;
+}
+
+.secondaryButton,
+.secondaryButton:focus {
+    color: #f300b4;
+    background: transparent;
+    border: none;
+    text-align: center;
+    font-size: 1rem;
+    transition: transform ease-in-out .25s;
+    cursor: pointer;
+    outline: none;
+}
+
+.secondaryButton:hover {
+    transform: translateY(-4px);
 }

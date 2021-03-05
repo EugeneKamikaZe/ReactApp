@@ -4,20 +4,29 @@ import Input from './Input'
 
 const LoginForm = ({onSubmit, isOpen}) => {
     const [email, setEmail] = useState('')
-    const [pass, setPass] = useState('')
+    const [password, setPass] = useState('')
+    const [type, setType] = useState(false)
 
     const handleSubmit = (e) => {
         e.preventDefault()
         onSubmit && onSubmit({
             email,
-            pass
+            password,
+            type
         })
-        setEmail('')
-        setPass('')
+    }
+
+    const handleChange = (e) => {
+        e.preventDefault()
+        setType(prevState => !prevState)
     }
 
     useEffect(() => {
         if (!isOpen) {
+            setEmail('')
+            setPass('')
+            setType(true)
+        } else {
             setEmail('')
             setPass('')
         }
@@ -38,7 +47,7 @@ const LoginForm = ({onSubmit, isOpen}) => {
             </div>
             <div>
                 <Input
-                    value={pass}
+                    value={password}
                     label="Password"
                     type="password"
                     name="password"
@@ -47,9 +56,14 @@ const LoginForm = ({onSubmit, isOpen}) => {
                     }}
                 />
             </div>
-            <button className={s.login__button}>
-                Login
-            </button>
+            <div className={s.btnWrapper}>
+                <button className={s.activeButton}>
+                    { type ? 'Login' : 'Register' }
+                </button>
+                <button onClick={handleChange} className={s.secondaryButton}>
+                    { !type ? 'Login' : 'Register' }
+                </button>
+            </div>
         </form>
     )
 }
