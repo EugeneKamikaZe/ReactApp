@@ -17,6 +17,7 @@
     cursor: pointer;
     box-sizing: border-box;
     border-radius: 4px;
+    overflow: hidden;
 }
 
 .activeButton,
@@ -65,11 +66,69 @@
     border: none;
     text-align: center;
     font-size: 1rem;
-    transition: transform ease-in-out .25s;
+    transition: font-size ease-in-out .25s;
     cursor: pointer;
     outline: none;
 }
 
 .secondaryButton:hover {
-    transform: translateY(-4px);
+    font-size: 1.2rem;
+}
+
+.btnText {
+    display: block;
+    position: relative;
+    transition: .2s all ease-in-out;
+}
+.btnText.activeUp {
+    animation: changeTextOne .5s ease-in-out;
+}
+.btnText.activeDown {
+    animation: changeTextSecond .5s ease-in-out;
+}
+
+@keyframes changeTextOne {
+    0% {
+        top: 0;
+    }
+
+    25% {
+        top: 40px;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    75% {
+        top: -40px;
+    }
+
+    100% {
+        opacity: 1;
+        top: 0;
+    }
+}
+
+@keyframes changeTextSecond {
+    0% {
+        top: 0;
+    }
+
+    25% {
+        top: 40px;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    75% {
+        top: -40px;
+    }
+
+    100% {
+        opacity: 1;
+        top: 0;
+    }
 }
