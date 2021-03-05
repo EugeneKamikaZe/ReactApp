@@ -1,0 +1,19 @@
+.rules {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-column-gap: 32px;
+}
+
+.rules__header {
+    font-weight: 600;
+    font-family: 'DotGothic16', sans-serif;
+}
+
+.title {
+    font-size: 2rem;
+}
+
+.phrase {
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 1.125rem;
+}

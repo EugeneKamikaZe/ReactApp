@@ -1,0 +1,134 @@
+.btnWrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.activeButton,
+.activeButton:visited {
+    width: 100%;
+    max-width: 240px;
+    padding: 1rem;
+    border: 1px solid #fafafa;
+    color: #fafafa;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1rem;
+    transition: all ease-in-out .25s;
+    cursor: pointer;
+    box-sizing: border-box;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.activeButton,
+.activeButton:visited {
+    background: #f300b4;
+    border: 1px solid transparent;
+    color: #fafafa;
+    font-weight: bold;
+    outline: none;
+}
+
+.activeButton:hover {
+    background: transparent;
+    border: 1px solid #f300b4;
+    color: #f300b4;
+    transition: all ease-in-out 0s;
+    outline: none;
+}
+
+.activeButton:active {
+    background: transparent;
+    border: 1px solid #f300b4;
+    color: #f300b4;
+    transition: all ease-in-out 0s;
+    outline: none;
+    padding: 1.05rem 1rem calc(.95rem - 1px) calc(1rem - 1px);
+    border-top: 2px solid;
+    border-right: 2px solid;
+}
+
+.activeButton:disabled {
+    opacity: .4;
+    cursor: not-allowed;
+}
+
+.activeButton:disabled:hover {
+    background: #f300b4;
+    border: 1px solid transparent;
+    color: #fafafa;
+}
+
+.secondaryButton,
+.secondaryButton:focus {
+    color: #f300b4;
+    background: transparent;
+    border: none;
+    text-align: center;
+    font-size: 1rem;
+    transition: font-size ease-in-out .25s;
+    cursor: pointer;
+    outline: none;
+}
+
+.secondaryButton:hover {
+    font-size: 1.2rem;
+}
+
+.btnText {
+    display: block;
+    position: relative;
+    transition: .2s all ease-in-out;
+}
+.btnText.activeUp {
+    animation: changeTextOne .5s ease-in-out;
+}
+.btnText.activeDown {
+    animation: changeTextSecond .5s ease-in-out;
+}
+
+@keyframes changeTextOne {
+    0% {
+        top: 0;
+    }
+
+    25% {
+        top: 40px;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    75% {
+        top: -40px;
+    }
+
+    100% {
+        opacity: 1;
+        top: 0;
+    }
+}
+
+@keyframes changeTextSecond {
+    0% {
+        top: 0;
+    }
+
+    25% {
+        top: 40px;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    75% {
+        top: -40px;
+    }
+
+    100% {
+        opacity: 1;
+        top: 0;
+    }
+}

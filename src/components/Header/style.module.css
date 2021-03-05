@@ -120,11 +120,13 @@
 }
 
 .container p {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: normal;
     color: #fafafa;
     line-height: 32px;
     margin-bottom: 24px;
+    font-family: 'DotGothic16', sans-serif;
+    text-transform: lowercase;
 }
 
 .start__btn {
