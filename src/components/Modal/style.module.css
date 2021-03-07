@@ -8,7 +8,7 @@
     visibility: hidden;
     opacity: 0;
     transition: all 0.25s ease-in-out;
-    z-index: 100000;
+    z-index: 3;
 }
 
 .root.open {

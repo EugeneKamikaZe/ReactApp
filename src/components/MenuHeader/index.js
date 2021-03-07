@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import {NotificationManager} from 'react-notifications'
+import {useSnackbar} from 'notistack'
 
 import Menu from '../Menu'
 import NavBar from '../Navbar'
@@ -9,6 +9,7 @@ import LoginForm from '../LoginForm'
 const MenuNavbar = ({bgActive}) => {
     const [isOpen, setOpen] = useState(null)
     const [isOpenModal, setOpenModal] = useState(false)
+    const { enqueueSnackbar } = useSnackbar()
 
     const handleClickButton = () => {
         setOpen(prevState => !prevState)
@@ -20,6 +21,7 @@ const MenuNavbar = ({bgActive}) => {
 
     const handleSubmitLoginForm = async ({email, password, type}) => {
         if (!type) {
+            // Registration
             const requestOptions = {
                 method: 'POST',
                 body: JSON.stringify({
@@ -32,13 +34,27 @@ const MenuNavbar = ({bgActive}) => {
                 .then(res => res.json())
 
             if (response.hasOwnProperty('error')) {
-                NotificationManager.error(response.error.message, 'Error registration')
+                console.log(response.error.message)
+                enqueueSnackbar(`${response.error.message}`, {
+                    anchorOrigin: {
+                        vertical: 'top',
+                        horizontal: 'right',
+                    },
+                    variant: 'error',
+                });
             } else {
                 localStorage.setItem('idToken', response.idToken)
                 setOpenModal(false)
-                NotificationManager.success('User success registered')
+                enqueueSnackbar('User success registered', {
+                    anchorOrigin: {
+                        vertical: 'top',
+                        horizontal: 'right',
+                    },
+                    variant: 'success',
+                });
             }
         } else {
+            // Login
             const requestOptions = {
                 method: 'POST',
                 body: JSON.stringify({
@@ -51,10 +67,22 @@ const MenuNavbar = ({bgActive}) => {
                 .then(res => res.json())
 
             if (response.hasOwnProperty('error')) {
-                NotificationManager.error(response.error.message, 'Invalid login or password')
+                enqueueSnackbar(`${response.error.message}`, {
+                    anchorOrigin: {
+                        vertical: 'top',
+                        horizontal: 'right',
+                    },
+                    variant: 'error',
+                });
             } else {
                 setOpenModal(false)
-                NotificationManager.success('Success logon')
+                enqueueSnackbar('Success logon', {
+                    anchorOrigin: {
+                        vertical: 'top',
+                        horizontal: 'right',
+                    },
+                    variant: 'success',
+                });
             }
         }
     }
