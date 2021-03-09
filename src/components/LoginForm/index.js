@@ -3,10 +3,10 @@ import s from './style.module.css'
 import cn from 'classnames'
 import Input from './Input'
 
-const LoginForm = ({onSubmit, isOpen}) => {
+const LoginForm = ({onSubmit, isResetField = false}) => {
     const [email, setEmail] = useState('')
     const [password, setPass] = useState('')
-    const [type, setType] = useState(false)
+    const [isLogin, setType] = useState(false)
     const [animation, setAnimation] = useState(false)
 
     const activeBtn = useRef()
@@ -16,7 +16,7 @@ const LoginForm = ({onSubmit, isOpen}) => {
         onSubmit && onSubmit({
             email,
             password,
-            type
+            type: isLogin ? 'login' : 'signup'
         })
     }
 
@@ -27,15 +27,10 @@ const LoginForm = ({onSubmit, isOpen}) => {
     }
 
     useEffect(() => {
-        if (!isOpen) {
-            setEmail('')
-            setPass('')
-            setType(true)
-        } else {
-            setEmail('')
-            setPass('')
-        }
-    }, [isOpen])
+        setEmail('')
+        setPass('')
+        setType(true)
+    }, [isResetField])
 
     return (
         <form onSubmit={handleSubmit}>
@@ -63,14 +58,15 @@ const LoginForm = ({onSubmit, isOpen}) => {
             </div>
             <div className={s.btnWrapper}>
                 <button className={s.activeButton}>
-                    <span className={cn(s.btnText, {[s.activeUp]: animation, [s.activeDown]: !animation})} ref={activeBtn}>
-                        {
-                            type ? 'Login' : 'Register'
-                        }
+                    <span className={cn(s.btnText, {[s.activeUp]: animation, [s.activeDown]: !animation})}
+                          ref={activeBtn}>
+                        {isLogin ? 'Login' : 'Register'}
                     </span>
                 </button>
                 <button onClick={handleChange} className={s.secondaryButton}>
-                    {!type ? 'Login' : 'Register'}
+                    <span className={cn(s.btnText, {[s.activeFadeIn]: animation, [s.activeFadeOut]: !animation})}>
+                        {!isLogin ? 'Login' : 'Register'}
+                    </span>
                 </button>
             </div>
         </form>

@@ -1,5 +1,4 @@
 import {createSlice} from '@reduxjs/toolkit'
-import {act} from '@testing-library/react'
 import FirebaseClass from '../service/firebase'
 
 export const slice = createSlice({

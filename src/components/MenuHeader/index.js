@@ -6,10 +6,30 @@ import NavBar from '../Navbar'
 import Modal from '../Modal'
 import LoginForm from '../LoginForm'
 
+const singingSignupUser = async ({email, password, type}) => {
+    const requestOptions = {
+        method: 'POST',
+        body: JSON.stringify({
+            email,
+            password,
+            returnSecureToken: true
+        })
+    }
+    console.log(type)
+    switch (type) {
+        case 'signup':
+            return await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAdIUyKVVt5NGUHpfVuO_hfayQRuZpvkXw', requestOptions).then(res => res.json())
+        case 'login':
+            return await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAdIUyKVVt5NGUHpfVuO_hfayQRuZpvkXw', requestOptions).then(res => res.json())
+        default:
+            return 'I cannot login user'
+    }
+}
+
 const MenuNavbar = ({bgActive}) => {
     const [isOpen, setOpen] = useState(null)
     const [isOpenModal, setOpenModal] = useState(false)
-    const { enqueueSnackbar } = useSnackbar()
+    const {enqueueSnackbar} = useSnackbar()
 
     const handleClickButton = () => {
         setOpen(prevState => !prevState)
@@ -19,71 +39,27 @@ const MenuNavbar = ({bgActive}) => {
         setOpenModal(prevState => !prevState)
     }
 
-    const handleSubmitLoginForm = async ({email, password, type}) => {
-        if (!type) {
-            // Registration
-            const requestOptions = {
-                method: 'POST',
-                body: JSON.stringify({
-                    email,
-                    password,
-                    returnSecureToken: true
-                })
-            }
-            const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAdIUyKVVt5NGUHpfVuO_hfayQRuZpvkXw', requestOptions)
-                .then(res => res.json())
+    const handleSubmitLoginForm = async (props) => {
+        const response = await singingSignupUser(props)
 
-            if (response.hasOwnProperty('error')) {
-                console.log(response.error.message)
-                enqueueSnackbar(`${response.error.message}`, {
-                    anchorOrigin: {
-                        vertical: 'top',
-                        horizontal: 'right',
-                    },
-                    variant: 'error',
-                });
-            } else {
-                localStorage.setItem('idToken', response.idToken)
-                setOpenModal(false)
-                enqueueSnackbar('User success registered', {
-                    anchorOrigin: {
-                        vertical: 'top',
-                        horizontal: 'right',
-                    },
-                    variant: 'success',
-                });
-            }
+        if (response.hasOwnProperty('error')) {
+            enqueueSnackbar(`${response.error.message}`, {
+                anchorOrigin: {
+                    vertical: 'top',
+                    horizontal: 'right'
+                },
+                variant: 'error'
+            })
         } else {
-            // Login
-            const requestOptions = {
-                method: 'POST',
-                body: JSON.stringify({
-                    email,
-                    password,
-                    returnSecureToken: true
-                })
-            }
-            const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAdIUyKVVt5NGUHpfVuO_hfayQRuZpvkXw', requestOptions)
-                .then(res => res.json())
-
-            if (response.hasOwnProperty('error')) {
-                enqueueSnackbar(`${response.error.message}`, {
-                    anchorOrigin: {
-                        vertical: 'top',
-                        horizontal: 'right',
-                    },
-                    variant: 'error',
-                });
-            } else {
-                setOpenModal(false)
-                enqueueSnackbar('Success logon', {
-                    anchorOrigin: {
-                        vertical: 'top',
-                        horizontal: 'right',
-                    },
-                    variant: 'success',
-                });
-            }
+            localStorage.setItem('idToken', response.idToken)
+            handleClickButtonType()
+            enqueueSnackbar('Success', {
+                anchorOrigin: {
+                    vertical: 'top',
+                    horizontal: 'right'
+                },
+                variant: 'success'
+            })
         }
     }
 
@@ -103,7 +79,7 @@ const MenuNavbar = ({bgActive}) => {
             >
                 <LoginForm
                     onSubmit={handleSubmitLoginForm}
-                    isOpen={isOpenModal}
+                    isResetField={!isOpenModal}
                 />
             </Modal>
         </>

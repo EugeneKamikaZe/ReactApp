@@ -6,7 +6,7 @@ import s from './style.module.css'
 import {useHistory} from 'react-router-dom'
 import {PokemonContext} from '../../../../context/pokemonContext'
 import {useDispatch, useSelector} from 'react-redux'
-import {getPokemonsAsync, selectPokemonsData, selectPokemonsLoading} from '../../../../store/pokemons'
+import {getPokemonsAsync, selectPokemonsData} from '../../../../store/pokemons'
 
 const StartPage = () => {
     const history = useHistory()

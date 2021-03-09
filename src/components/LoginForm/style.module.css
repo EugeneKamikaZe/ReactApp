@@ -71,10 +71,6 @@
     outline: none;
 }
 
-.secondaryButton:hover {
-    font-size: 1.2rem;
-}
-
 .btnText {
     display: block;
     position: relative;
@@ -85,6 +81,12 @@
 }
 .btnText.activeDown {
     animation: changeTextSecond .5s ease-in-out;
+}
+.btnText.activeFadeIn {
+    animation: activeFadeIn .5s ease-in-out;
+}
+.btnText.activeFadeOut {
+    animation: activeFadeOut .5s ease-in-out;
 }
 
 @keyframes changeTextOne {
@@ -130,5 +132,29 @@
     100% {
         opacity: 1;
         top: 0;
+    }
+}
+
+@keyframes activeFadeIn {
+    0% {
+       opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes activeFadeOut {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }
