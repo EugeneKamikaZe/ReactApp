@@ -15,16 +15,23 @@ import {FirebaseContext} from './context/firebaseContext'
 import s from './style.module.css'
 import FirebaseClass from './service/firebase'
 import Loader from './components/Loader'
+import {useDispatch} from 'react-redux'
+import {getUserAsync} from './store/user'
 
 const App = () => {
     const location = useLocation()
     const isPadding = location.pathname === '/'
     const isFinishPage = location.pathname === '/game/finish'
+    const dispatch = useDispatch()
     // const [loader, setLoader] = useState(true)
 
     // useEffect(() => {
     //     setLoader(prevState => !prevState)
     // }, [])
+
+    useEffect(() => {
+        dispatch(getUserAsync())
+    }, [])
 
     return (
         <FirebaseContext.Provider value={FirebaseClass}>

@@ -15,7 +15,7 @@ const singingSignupUser = async ({email, password, type}) => {
             returnSecureToken: true
         })
     }
-    console.log(type)
+
     switch (type) {
         case 'signup':
             return await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAdIUyKVVt5NGUHpfVuO_hfayQRuZpvkXw', requestOptions).then(res => res.json())
@@ -51,6 +51,16 @@ const MenuNavbar = ({bgActive}) => {
                 variant: 'error'
             })
         } else {
+            if (props.type === 'signup') {
+                const pokemonStart = await fetch('https://reactmarathon-api.herokuapp.com/api/pokemons/starter').then(res => res.json())
+
+                for (const item of pokemonStart.data) {
+                    await fetch(`https://pokemon-game-ffc66-default-rtdb.firebaseio.com/${response.localId}/pokemons.json?auth=${response.idToken}`, {
+                        method: 'POST',
+                        body: JSON.stringify(item)
+                    })
+                }
+            }
             localStorage.setItem('idToken', response.idToken)
             handleClickButtonType()
             enqueueSnackbar('Success', {
